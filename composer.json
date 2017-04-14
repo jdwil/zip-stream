@@ -1,0 +1,19 @@
+{
+    "name": "jdwil/zip-stream",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JD Williams",
+            "email": "me@jdwilliams.xyz"
+        }
+    ],
+    "autoload" : {
+        "psr-0" : {
+            "JDWil\\ZipStream\\" : "src/"
+        }
+    },
+    "require": {
+        "php": "^7"
+    }
+}
