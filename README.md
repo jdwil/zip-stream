@@ -4,6 +4,10 @@ This library is for generating large zip files with a low memory footprint. The 
 zip file are never stored in memory at once. Everything is written using streams. This library
 is for writing zip files only and has no reading capabilities.
 
+## License
+
+MIT License
+
 ## Getting Started
 
 The only requirements are PHP 7.0+ and the zlib extension (almost always enabled).
@@ -42,7 +46,7 @@ $zipStream->close();
 $zipStream = ZipStream::forFile('/path/to/file.zip');
 $zipStream->beginFile('foo.txt');
 while ($data = $somePdoStatement->fetch()) {
-  $zipStream->addFilePart(implode(',', $row));
+  $zipStream->addFilePart(implode(',', $data));
 }
 $zipStream->endFile();
 $zipStream->close();
