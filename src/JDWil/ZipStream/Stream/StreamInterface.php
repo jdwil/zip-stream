@@ -40,5 +40,5 @@ interface StreamInterface
     /**
      * @return resource
      */
-    public function getHandle(): resource;
+    public function getHandle();
 }

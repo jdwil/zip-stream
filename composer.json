@@ -15,5 +15,9 @@
     },
     "require": {
         "php": "^7"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^3.2",
+        "peridot-php/leo": "^1.6"
     }
 }

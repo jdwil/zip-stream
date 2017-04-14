@@ -37,6 +37,11 @@ abstract class AbstractStream implements StreamInterface
     protected $handle;
 
     /**
+     * @var string
+     */
+    protected $mode;
+
+    /**
      * @return bool
      */
     public function isOpen(): bool
@@ -60,7 +65,7 @@ abstract class AbstractStream implements StreamInterface
     /**
      * @return resource
      */
-    public function getHandle(): resource
+    public function getHandle()
     {
         return $this->handle;
     }

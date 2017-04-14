@@ -52,12 +52,14 @@ class WriteStream extends AbstractStream
 
     /**
      * @param string $filePath
+     * @param string $mode
      * @return WriteStream
      */
-    public static function forFile(string $filePath): WriteStream
+    public static function forFile(string $filePath, string $mode = 'ab+'): WriteStream
     {
         $ret = new WriteStream();
         $ret->filePath = $filePath;
+        $ret->mode = $mode;
 
         return $ret;
     }
@@ -67,7 +69,7 @@ class WriteStream extends AbstractStream
      */
     public function open()
     {
-        if (!$this->handle = fopen($this->filePath, 'ab+')) {
+        if (!$this->handle = fopen($this->filePath, $this->mode)) {
             throw new StreamException('Could not open file for writing');
         }
     }

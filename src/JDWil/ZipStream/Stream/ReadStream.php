@@ -33,19 +33,21 @@ class ReadStream extends AbstractStream
 
     /**
      * @param string $filePath
+     * @param string $mode
      * @return ReadStream
      */
-    public static function forFile(string $filePath): ReadStream
+    public static function forFile(string $filePath, string $mode = 'rb'): ReadStream
     {
         $ret = new ReadStream();
         $ret->filePath = $filePath;
+        $ret->mode = $mode;
 
         return $ret;
     }
 
-    public function open(): void
+    public function open()
     {
-        if (!$this->handle = fopen($this->filePath, 'rb')) {
+        if (!$this->handle = fopen($this->filePath, $this->mode)) {
             throw new StreamException('Could not open file for reading');
         }
     }
