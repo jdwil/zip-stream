@@ -15,8 +15,7 @@ declare(strict_types=1);
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
- * <http://www.doctrine-project.org>.
+ * and is licensed under the MIT license.
  */
 
 namespace JDWil\ZipStream\Segment;
@@ -51,20 +50,16 @@ class CentralDirectoryFileHeader
     /**
      * @param WriteStream $stream
      * @return int
+     * @throws \JDWil\ZipStream\Exception\StreamException
      */
     public function write(WriteStream $stream): int
     {
-        $generalPurposeBit = 0x00;
-        if (mb_check_encoding($this->file->name, "UTF-8") && !mb_check_encoding($this->file->name, "ASCII")) {
-            $generalPurposeBit |= 0x0800;
-        }
-
         $data = pack(
             'VvvvvVVVVvvvvvVV',
             self::CDOH_SIGNATURE,
             self::VERSION,
             self::VERSION,
-            $generalPurposeBit,
+            0x08,
             self::COMPRESSION_METHOD,
             DOSTime::fromDateTime(),
             $this->file->crc32,
@@ -75,7 +70,7 @@ class CentralDirectoryFileHeader
             0,
             0,
             0,
-            32,
+            0,
             $this->file->offset
         );
 

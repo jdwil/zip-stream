@@ -15,8 +15,7 @@ declare(strict_types=1);
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
- * <http://www.doctrine-project.org>.
+ * and is licensed under the MIT license.
  */
 
 namespace JDWil\ZipStream;
@@ -85,6 +84,8 @@ class ZipStream implements ZipStreamInterface
     /**
      * @param string $filePath
      * @return ZipStreamInterface
+     * @throws \JDWil\ZipStream\Exception\StreamException
+     * @throws \JDWil\ZipStream\Exception\UnmetDependenciesException
      */
     public static function forFile(string $filePath): ZipStreamInterface
     {
@@ -100,6 +101,7 @@ class ZipStream implements ZipStreamInterface
      * @param string $data
      * @param Options|null $options
      * @return ZipStreamInterface
+     * @throws \JDWil\ZipStream\Exception\StreamException
      */
     public function addFile(string $name, string $data, Options $options = null): ZipStreamInterface
     {
@@ -117,6 +119,7 @@ class ZipStream implements ZipStreamInterface
      * @param string $filePath
      * @param Options|null $options
      * @return ZipStreamInterface
+     * @throws \JDWil\ZipStream\Exception\StreamException
      */
     public function addFileFromDisk(string $name, string $filePath, Options $options = null): ZipStreamInterface
     {
@@ -134,6 +137,7 @@ class ZipStream implements ZipStreamInterface
      * @param ReadStream $stream
      * @param Options|null $options
      * @return ZipStreamInterface
+     * @throws \JDWil\ZipStream\Exception\StreamException
      */
     public function addFileFromStream(string $name, ReadStream $stream, Options $options = null): ZipStreamInterface
     {
@@ -156,6 +160,7 @@ class ZipStream implements ZipStreamInterface
      * @param string $name
      * @param Options|null $options
      * @return ZipStreamInterface
+     * @throws \JDWil\ZipStream\Exception\StreamException
      */
     public function beginFile(string $name, Options $options = null): ZipStreamInterface
     {
@@ -181,6 +186,7 @@ class ZipStream implements ZipStreamInterface
     /**
      * @param string $data
      * @return ZipStreamInterface
+     * @throws \JDWil\ZipStream\Exception\StreamException
      */
     public function addFilePart(string $data): ZipStreamInterface
     {
@@ -193,6 +199,7 @@ class ZipStream implements ZipStreamInterface
 
     /**
      * @return ZipStreamInterface
+     * @throws \JDWil\ZipStream\Exception\StreamException
      */
     public function endFile(): ZipStreamInterface
     {
@@ -214,8 +221,8 @@ class ZipStream implements ZipStreamInterface
         $this->cdrStart = $this->offset;
 
         foreach ($this->files as $file) {
-            $cdoh = new CentralDirectoryFileHeader($file);
-            $length = $cdoh->write($this->outputStream);
+            $cdfh = new CentralDirectoryFileHeader($file);
+            $length = $cdfh->write($this->outputStream);
             $this->offset += $length;
             $this->cdrLength += $length;
         }

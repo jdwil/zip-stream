@@ -15,8 +15,7 @@ declare(strict_types=1);
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
- * <http://www.doctrine-project.org>.
+ * and is licensed under the MIT license.
  */
 
 namespace JDWil\ZipStream\Segment;
@@ -49,6 +48,7 @@ class FileDescriptor
     /**
      * @param WriteStream $stream
      * @return int
+     * @throws \JDWil\ZipStream\Exception\StreamException
      */
     public function write(WriteStream $stream): int
     {
