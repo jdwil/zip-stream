@@ -9,8 +9,13 @@
         }
     ],
     "autoload" : {
-        "psr-0" : {
+        "psr-4" : {
             "JDWil\\ZipStream\\" : "src/"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "JDWil\\ZipStream\\" : "spec/"
         }
     },
     "require": {

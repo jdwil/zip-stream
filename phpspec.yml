@@ -1,0 +1,4 @@
+suites:
+  default:
+    namespace: JDWil\ZipStream
+    psr4_prefix: JDWil\ZipStream
