@@ -121,9 +121,9 @@ class WriteStream extends AbstractStream
     }
 
     /**
-     * @return int
+     * @return int|float
      */
-    public function getCrc32(): int
+    public function getCrc32()
     {
         return $this->crc32Params->crc32;
     }
